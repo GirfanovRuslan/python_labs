@@ -75,3 +75,80 @@ print("Длина символов:",t)
 ```
 ![alt text](src/images/lab01/ex05.png)
 
+# Лабораторная работа №2
+## Задание 1
+```python
+def min_max(nums: list[float | int]):
+    if not nums:
+        print("Value Error")
+    min_val = min(nums)
+    max_val = max(nums)
+    return (min_val,max_val)
+def unique_sorted(nums: list[float | int]):
+    return (list(sorted(set(nums))))
+def flatten(mat: list[list | tuple]):
+    flattened_list = []
+    for row in mat:
+        if isinstance(row, (list, tuple)):
+            flattened_list.extend(row)
+        else:
+            raise TypeError
+    return (flattened_list)
+print(min_max([42]))
+print(unique_sorted([2.4,1,2,1,3]))
+print(flatten([[1, 2], "ab"]))
+```
+![alt text](src/images/lab02/ex01.png)
+## Задание 2
+```python
+def transpose(mat: list[list[float | int]]):
+    if not mat:
+        return []
+    rows=len(mat)
+    cols=len(mat[0])
+    for row in mat:
+        if len(row)!=cols:
+            raise ValueError
+    teleport_mat = [[mat[i][j] for i in range(rows)] for j in range(cols)]
+    return teleport_mat
+def row_sums(mat: list[list[float | int]]):
+    if not mat:
+        return []
+    rows = len(mat)
+    cols = len(mat[0])
+    for row in mat:
+        if len(row) != cols:
+            raise ValueError
+    sums=[sum(row) for row in mat]
+    return sums
+def col_sums(mat: list[list[float | int]]):
+    if not mat:
+        return []
+    rows = len(mat)
+    cols = len(mat[0])
+    for row in mat:
+        if len(row) != cols:
+            raise ValueError
+    sums = [sum(mat[i][j] for i in range(rows)) for j in range(cols)]
+    return sums
+print(transpose([[1,2],[3,4]]))
+print(row_sums([[1,2,3], [4,5,6]]))
+print(col_sums([[1, 2, 3], [4, 5, 6]]))
+```
+![alt text](src/images/lab02/ex02.png)
+## Задание 3
+```python
+def format_record(rec: tuple[str, str, float]):
+    fio, group, gpa = rec
+    parts = fio.strip().split()
+    family = parts[0]
+    initials = ""
+    for part in parts[1:]:
+        initials += part[0].upper() + "."
+    if not initials:
+        initials = ""
+    form_gpa=f"{gpa:.2f}"
+    return f"{family} {initials}, гр. {group}, GPA {form_gpa}"
+print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
+```
+![alt text](src/images/lab02/ex03.png)
