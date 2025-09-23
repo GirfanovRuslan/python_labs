@@ -75,6 +75,28 @@ print("Длина символов:",t)
 ```
 ![alt text](src/images/lab01/ex05.png)
 
+# 6 задание
+```python
+print("Введите число учащихся:")
+n=int(input())
+k=0
+c=0
+for a in range(n):
+    print("А теперь введите фамилию, имя, возраст, и формат обучения: False ot True")
+    s=input()
+    d=s.split()
+    forma=d[3]
+    if forma=="True":
+        k=k+1
+    else:
+        c=c+1
+print(f"Очный:{k} Заочный:{c}")
+```
+![alt text](src/images/lab01/ex06.png)
+
+
+
+
 # Лабораторная работа №2
 ## Задание 1
 ```python
@@ -98,6 +120,7 @@ print(min_max([42]))
 print(unique_sorted([2.4,1,2,1,3]))
 print(flatten([[1, 2], "ab"]))
 ```
+
 ![alt text](src/images/lab02/ex01.png)
 ## Задание 2
 ```python
@@ -151,4 +174,5 @@ def format_record(rec: tuple[str, str, float]):
     return f"{family} {initials}, гр. {group}, GPA {form_gpa}"
 print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
 ```
-![alt text](src/images/lab02/ex03.png)
+
+![alt text](./src/images/lab02/ex03.png)
