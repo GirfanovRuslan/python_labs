@@ -121,7 +121,7 @@ print(unique_sorted([2.4,1,2,1,3]))
 print(flatten([[1, 2], "ab"]))
 ```
 
-![alt text](src/images/lab02/ex01.png)
+![alt text](src/images/lab02/lab02ex01.png)
 ## Задание 2
 ```python
 def transpose(mat: list[list[float | int]]):
@@ -175,4 +175,4 @@ def format_record(rec: tuple[str, str, float]):
 print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
 ```
 
-![alt text](./src/images/lab02/ex03.png)
+![alt text](src/images/lab02/ex03.png)
