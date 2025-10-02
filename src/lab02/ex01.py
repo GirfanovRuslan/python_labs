@@ -1,19 +1,12 @@
 def min_max(nums: list[float | int]):
     if not nums:
         print("Value Error")
-    min_val = min(nums)
-    max_val = max(nums)
-    return (min_val,max_val)
-def unique_sorted(nums: list[float | int]):
-    return (list(sorted(set(nums))))
-def flatten(mat: list[list | tuple]):
-    flattened_list = []
-    for row in mat:
-        if isinstance(row, (list, tuple)):
-            flattened_list.extend(row)
-        else:
-            raise TypeError
-    return (flattened_list)
+    else:
+        min_val = min(nums)
+        max_val = max(nums)
+        return (min_val,max_val)
+print(min_max([3, -1, 5, 5, 0]))
 print(min_max([42]))
-print(unique_sorted([2.4,1,2,1,3]))
-print(flatten([[1, 2], "ab"]))
+print(min_max([-5, -2, -9]))
+print(min_max([1.5,2,2.0,-3.1]))
+print(min_max([]))

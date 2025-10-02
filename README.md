@@ -103,11 +103,31 @@ print(f"Очный:{k} Заочный:{c}")
 def min_max(nums: list[float | int]):
     if not nums:
         print("Value Error")
-    min_val = min(nums)
-    max_val = max(nums)
-    return (min_val,max_val)
+    else:
+        min_val = min(nums)
+        max_val = max(nums)
+        return (min_val,max_val)
+print(min_max([3, -1, 5, 5, 0]))
+print(min_max([42]))
+print(min_max([-5, -2, -9]))
+print(min_max([1.5,2,2.0,-3.1]))
+print(min_max([]))
+```
+![alt text](src/images/lab02/lab02ex01.png)
+
+## Задание 2
+```python
 def unique_sorted(nums: list[float | int]):
     return (list(sorted(set(nums))))
+print(unique_sorted([3, 1, 2, 1, 3]))
+print(unique_sorted([]))
+print(unique_sorted([-1, -1, 0, 2, 2]))
+print(unique_sorted([1.0, 1, 2.5, 2.5, 0]))
+```
+![alt text](src/images/lab02/lab02ex02.png)
+
+## Задание 3
+```python
 def flatten(mat: list[list | tuple]):
     flattened_list = []
     for row in mat:
@@ -116,13 +136,14 @@ def flatten(mat: list[list | tuple]):
         else:
             raise TypeError
     return (flattened_list)
-print(min_max([42]))
-print(unique_sorted([2.4,1,2,1,3]))
+print(flatten([[1, 2], [3, 4]]))
+print(flatten([[1, 2], (3, 4, 5)]))
+print(flatten([[1], [],[2, 3]]))
 print(flatten([[1, 2], "ab"]))
 ```
+![alt text](src/images/lab02/lab02ex03.png)
 
-![alt text](src/images/lab02/lab02ex01.png)
-## Задание 2
+## Задание 4
 ```python
 def transpose(mat: list[list[float | int]]):
     if not mat:
@@ -134,6 +155,16 @@ def transpose(mat: list[list[float | int]]):
             raise ValueError
     teleport_mat = [[mat[i][j] for i in range(rows)] for j in range(cols)]
     return teleport_mat
+print(transpose([[1, 2, 3]]))
+print(transpose([[1],[2], [3]]))
+print(transpose([[1,2],[3,4]]))
+print(transpose([[1,2],[3]]))
+print(transpose([[]]))
+```
+![alt text](src/images/lab02/lab02ex04.png)
+
+## Задание 5
+```python
 def row_sums(mat: list[list[float | int]]):
     if not mat:
         return []
@@ -144,6 +175,15 @@ def row_sums(mat: list[list[float | int]]):
             raise ValueError
     sums=[sum(row) for row in mat]
     return sums
+print(row_sums([[1,2,3], [4,5,6]]))
+print(row_sums([[-1, 1], [10, -10]]))
+print(row_sums([[0,0], [0,0]]))
+print(row_sums([[1,2], [3]]))
+```
+![alt text](src/images/lab02/lab02ex05.png)
+
+## Задание 6
+```python
 def col_sums(mat: list[list[float | int]]):
     if not mat:
         return []
@@ -154,12 +194,14 @@ def col_sums(mat: list[list[float | int]]):
             raise ValueError
     sums = [sum(mat[i][j] for i in range(rows)) for j in range(cols)]
     return sums
-print(transpose([[1,2],[3,4]]))
-print(row_sums([[1,2,3], [4,5,6]]))
 print(col_sums([[1, 2, 3], [4, 5, 6]]))
+print(col_sums([[-1, 1], [10, -10]]))
+print(col_sums([[0, 0], [0, 0]]))
+print(col_sums([[1, 2], [3]]))
 ```
-![alt text](src/images/lab02/ex02.png)
-## Задание 3
+![alt text](src/images/lab02/lab02ex06.png)
+
+## Задание 7
 ```python
 def format_record(rec: tuple[str, str, float]):
     fio, group, gpa = rec
@@ -173,6 +215,9 @@ def format_record(rec: tuple[str, str, float]):
     form_gpa=f"{gpa:.2f}"
     return f"{family} {initials}, гр. {group}, GPA {form_gpa}"
 print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
+print(format_record(("Петров Пётр", "IKBO-12", 5.0)))
+print(format_record(("Петров Пётр Петрович", "IKBO-12", 5.0)))
+print(format_record(("Петров Пётр Петрович", "IKBO-12", 5.0)))
+print(format_record(("  сидорова  анна   сергеевна ", "ABB-01", 3.999)))
 ```
-
-![alt text](src/images/lab02/ex03.png)
+![alt text](src/images/lab02/lab02ex07.png)
