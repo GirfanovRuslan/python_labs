@@ -4,7 +4,7 @@ def flatten(mat: list[list | tuple]):
         if isinstance(row, (list, tuple)):
             flattened_list.extend(row)
         else:
-            raise TypeError
+            return ("TypeError")
     return (flattened_list)
 print(flatten([[1, 2], [3, 4]]))
 print(flatten([[1, 2], (3, 4, 5)]))
