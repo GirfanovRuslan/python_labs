@@ -102,7 +102,7 @@ print(f"Очный:{k} Заочный:{c}")
 ```python
 def min_max(nums: list[float | int]):
     if not nums:
-        print("Value Error")
+        return ("Value Error")
     else:
         min_val = min(nums)
         max_val = max(nums)
@@ -134,7 +134,7 @@ def flatten(mat: list[list | tuple]):
         if isinstance(row, (list, tuple)):
             flattened_list.extend(row)
         else:
-            raise TypeError
+            return ("TypeError")
     return (flattened_list)
 print(flatten([[1, 2], [3, 4]]))
 print(flatten([[1, 2], (3, 4, 5)]))
@@ -152,7 +152,7 @@ def transpose(mat: list[list[float | int]]):
     cols=len(mat[0])
     for row in mat:
         if len(row)!=cols:
-            raise ValueError
+            return ("ValueError")
     teleport_mat = [[mat[i][j] for i in range(rows)] for j in range(cols)]
     return teleport_mat
 print(transpose([[1, 2, 3]]))
@@ -172,7 +172,7 @@ def row_sums(mat: list[list[float | int]]):
     cols = len(mat[0])
     for row in mat:
         if len(row) != cols:
-            raise ValueError
+            return ("ValueError")
     sums=[sum(row) for row in mat]
     return sums
 print(row_sums([[1,2,3], [4,5,6]]))
@@ -191,7 +191,7 @@ def col_sums(mat: list[list[float | int]]):
     cols = len(mat[0])
     for row in mat:
         if len(row) != cols:
-            raise ValueError
+            return ("ValueError")
     sums = [sum(mat[i][j] for i in range(rows)) for j in range(cols)]
     return sums
 print(col_sums([[1, 2, 3], [4, 5, 6]]))
