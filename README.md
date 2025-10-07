@@ -102,7 +102,7 @@ print(f"Очный:{k} Заочный:{c}")
 ```python
 def min_max(nums: list[float | int]):
     if not nums:
-        return ("Value Error")
+        raise ValueError
     else:
         min_val = min(nums)
         max_val = max(nums)
@@ -114,7 +114,6 @@ print(min_max([1.5,2,2.0,-3.1]))
 print(min_max([]))
 ```
 ![alt text](src/images/lab02/lab02ex01.png)
-
 ## Задание 2
 ```python
 def unique_sorted(nums: list[float | int]):
@@ -134,7 +133,7 @@ def flatten(mat: list[list | tuple]):
         if isinstance(row, (list, tuple)):
             flattened_list.extend(row)
         else:
-            return ("TypeError")
+            raise TypeError
     return (flattened_list)
 print(flatten([[1, 2], [3, 4]]))
 print(flatten([[1, 2], (3, 4, 5)]))
@@ -152,7 +151,7 @@ def transpose(mat: list[list[float | int]]):
     cols=len(mat[0])
     for row in mat:
         if len(row)!=cols:
-            return ("ValueError")
+            raise ValueError
     teleport_mat = [[mat[i][j] for i in range(rows)] for j in range(cols)]
     return teleport_mat
 print(transpose([[1, 2, 3]]))
@@ -172,7 +171,7 @@ def row_sums(mat: list[list[float | int]]):
     cols = len(mat[0])
     for row in mat:
         if len(row) != cols:
-            return ("ValueError")
+            raise ValueError
     sums=[sum(row) for row in mat]
     return sums
 print(row_sums([[1,2,3], [4,5,6]]))
@@ -191,7 +190,7 @@ def col_sums(mat: list[list[float | int]]):
     cols = len(mat[0])
     for row in mat:
         if len(row) != cols:
-            return ("ValueError")
+            raise ValueError
     sums = [sum(mat[i][j] for i in range(rows)) for j in range(cols)]
     return sums
 print(col_sums([[1, 2, 3], [4, 5, 6]]))
@@ -205,8 +204,15 @@ print(col_sums([[1, 2], [3]]))
 ```python
 def format_record(rec: tuple[str, str, float]):
     fio, group, gpa = rec
+    if not isinstance(fio, str) or not fio.strip():
+        raise ValueError("ФИО должно быть непустой строкой.")
+    if not isinstance(group, str) or not group.strip():
+        raise ValueError("Группа должна быть непустой строкой.")
+    if not isinstance(gpa, (int, float)):
+        raise ValueError("GPA должно быть числом.")
     parts = fio.strip().split()
     family = parts[0]
+    family=(family.title())
     initials = ""
     for part in parts[1:]:
         initials += part[0].upper() + "."
@@ -214,10 +220,11 @@ def format_record(rec: tuple[str, str, float]):
         initials = ""
     form_gpa=f"{gpa:.2f}"
     return f"{family} {initials}, гр. {group}, GPA {form_gpa}"
-print(format_record(("Иванов Иван Иванович", "BIVT-25", 4.6)))
+print(format_record((34141, "BIVT-25", 4.6)))
 print(format_record(("Петров Пётр", "IKBO-12", 5.0)))
 print(format_record(("Петров Пётр Петрович", "IKBO-12", 5.0)))
 print(format_record(("Петров Пётр Петрович", "IKBO-12", 5.0)))
 print(format_record(("  сидорова  анна   сергеевна ", "ABB-01", 3.999)))
+
 ```
 ![alt text](src/images/lab02/lab02ex07.png)

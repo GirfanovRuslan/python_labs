@@ -1,6 +1,6 @@
 def min_max(nums: list[float | int]):
     if len(nums)==0:
-        return("Value Error")
+        raise ValueError
     else:
         min_val = min(nums)
         max_val = max(nums)

@@ -5,7 +5,7 @@ def transpose(mat: list[list[float | int]]):
     cols=len(mat[0])
     for row in mat:
         if len(row)!=cols:
-            return ("ValueError")
+            raise ValueError
     teleport_mat = [[mat[i][j] for i in range(rows)] for j in range(cols)]
     return teleport_mat
 print(transpose([[1, 2, 3]]))

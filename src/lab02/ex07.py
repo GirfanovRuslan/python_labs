@@ -6,8 +6,6 @@ def format_record(rec: tuple[str, str, float]):
         raise ValueError("Группа должна быть непустой строкой.")
     if not isinstance(gpa, (int, float)):
         raise ValueError("GPA должно быть числом.")
-    if not (0.0 <= gpa <= 5.0):
-        raise ValueError("GPA должно быть в диапазоне от 0.0 до 5.0.")
     parts = fio.strip().split()
     family = parts[0]
     family=(family.title())
@@ -18,8 +16,8 @@ def format_record(rec: tuple[str, str, float]):
         initials = ""
     form_gpa=f"{gpa:.2f}"
     return f"{family} {initials}, гр. {group}, GPA {form_gpa}"
-print(format_record((34141, "BIVT-25", 4.6)))
 print(format_record(("Петров Пётр", "IKBO-12", 5.0)))
 print(format_record(("Петров Пётр Петрович", "IKBO-12", 5.0)))
 print(format_record(("Петров Пётр Петрович", "IKBO-12", 5.0)))
 print(format_record(("  сидорова  анна   сергеевна ", "ABB-01", 3.999)))
+print(format_record((34141, "BIVT-25", 4.6)))
