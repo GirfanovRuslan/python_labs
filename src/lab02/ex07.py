@@ -2,6 +2,7 @@ def format_record(rec: tuple[str, str, float]):
     fio, group, gpa = rec
     parts = fio.strip().split()
     family = parts[0]
+    family=(family.title())
     initials = ""
     for part in parts[1:]:
         initials += part[0].upper() + "."
