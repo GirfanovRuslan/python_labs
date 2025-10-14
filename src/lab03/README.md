@@ -15,8 +15,7 @@ def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
     text = text.replace('\t', ' ')    # табуляция
     text = text.replace('\r', ' ')    # возврат каретки  
     text = text.replace('\n', ' ')    # новая строка
-    while '  ' in text:
-        text = text.replace('  ', ' ')
+    text = ' '.join(text.split())
     text= text.strip()
     return text
 ```
