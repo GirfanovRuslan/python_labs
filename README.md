@@ -237,6 +237,7 @@ print(format_record(("  сидорова  анна   сергеевна ", "ABB-
 - **[text_report.py](src/lab04/text_report.py)** - скрипт генерации отчетов
 
 ## Запуск
+![alt text](src/images/lab04/lab04A.png)
 ![alt text](src/images/lab04/lab04.png)
 ## Кодировки файлов
 
