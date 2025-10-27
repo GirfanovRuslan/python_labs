@@ -109,7 +109,7 @@ except ValueError as e:
 
 
 ### Выходные файлы:
-
+#### В алфавитном порядке
 #### people_from_json.csv:
 ![alt text](<../images/lab05/lab05 4.png>)
 
