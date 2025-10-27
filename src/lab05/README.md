@@ -47,7 +47,7 @@ csv_to_json("data/samples/people.csv", "data/out/people_from_csv.json")
 
 Пример использования:
 ```python
-csv_to_xlsx("data/samples/cities.csv", "data/out/cities_from_csv.xlsx")
+csv_to_xlsx("src/data/lab05/samples/people.csv", "src/data/lab05/out/people.xlsx")
 ```
 
 
@@ -79,29 +79,20 @@ python src/lab05/json_csv.py
 
 ## Валидация и обработка ошибок
 
-#### Проверяемые сценарии:
-
-1. **Пустой JSON** → `ValueError: "Пустой JSON или неподдерживаемая структура"`
-2. **CSV без заголовка** → `ValueError: "CSV файл не содержит заголовок"`
-3. **Неподдерживаемая структура JSON** → `ValueError: "JSON должен содержать список объектов"`
-4. **Отсутствующие поля** → заполняются пустыми строками
-5. **Некорректные типы параметров** → `TypeError`
-6. **Несуществующие файлы** → `FileNotFoundError`
-
-#### Примеры обработки ошибок:
-
+#### Пустой JSON
 ```python
-# Пустой JSON
 try:
-    json_to_csv("data/samples/empty_json.json", "data/out/empty.csv")
+    json_to_csv("src/data/lab05/samples/empty.json", "src/data/lab05/out/empty.csv")
 except ValueError as e:
-    print(f"Ошибка: {e}")  # "Пустой JSON или неподдерживаемая структура"
+    print(f"Ошибка: {e}")
+```
 
-# CSV без заголовка  
+### CSV без заголовка  
+```python
 try:
-    csv_to_json("data/samples/no_header_csv.csv", "data/out/no_header.json")
+    csv_to_json("src/data/lab05/samples/no_header.csv", "src/data/lab05/out/no_header.json")
 except ValueError as e:
-    print(f"Ошибка: {e}")  # "CSV файл не содержит заголовок"
+    print(f"Ошибка: {e}")
 ```
 
 
@@ -110,42 +101,23 @@ except ValueError as e:
 ### Входные данные:
 
 #### people.json:
-![people.json](/images/lab05/img06.png)
-
+![alt text](<../images/lab05/lab05 1.png>)
 #### cities.csv:
-![cities.csv](/images/lab05/img02.png)
-
+![alt text](<../images/lab05/lab05 3.png>)
 #### people.csv:
-![people.csv](/images/lab05/img05.png)
+![alt text](<../images/lab05/lab05 2.png>)
 
-#### empty_json.json:
-![empty_json.json](/images/lab05/img03.png)
-
-#### no_header_csv.csv:
-![no_header_csv.csv](/images/lab05/img04.png)
-
-#### test_missing_fields.json:
-![test_missing_fields.json](/images/lab05/img07.png)
 
 ### Выходные файлы:
 
 #### people_from_json.csv:
-![people_from_json.csv](/images/lab05/img10.png)
+![alt text](<../images/lab05/lab05 4.png>)
 
 #### cities_from_csv.xlsx:
-![cities_from_csv.xlsx](/images/lab05/img01.png)
+![alt text](<../images/lab05/lab05 5.png>)
 
 #### people_from_csv.json:
-![people_from_csv.json](/images/lab05/img09.png)
-
-#### empty_from_json.csv:
-`Ошибка: Пустой JSON или неподдерживаемая структура`
-
-#### no_header_from_csv.json:
-`Ошибка: CSV файл, вероятно, не содержит заголовок (эвритический подход)`
-
-#### missing_fields_from_json.csv:
-![missing_fields_from_json.csv](/images/lab05/img08.png)
+![alt text](<../images/lab05/lab05 6.png>)
 
 
 ## Особенности реализации

@@ -1,20 +1,27 @@
 [
   {
-    "name": "Анна",
+    "name": "Alice",
+    "age": "22",
+    "city": "SPB"
+  },
+  {
+    "name": "Bob",
     "age": "25",
-    "city": "Москва",
-    "department": "IT"
+    "city": "Moscow"
   },
   {
-    "name": "Иван",
+    "name": "Carlos",
     "age": "30",
-    "city": "Санкт-Петербург",
-    "department": "Marketing"
+    "city": "Kazan"
   },
   {
-    "name": "Мария",
-    "age": "28",
-    "city": "Казань",
-    "department": "Design"
+    "name": "Dana",
+    "age": "21",
+    "city": "SPB"
+  },
+  {
+    "name": "Andrey",
+    "age": "27",
+    "city": "Novosibirsk"
   }
 ]

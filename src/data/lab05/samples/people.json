@@ -1,20 +1,27 @@
 [
-  {
-    "name": "Анна",
-    "age": 25,
-    "city": "Москва",
-    "profession": "Инженер"
-  },
-  {
-    "name": "Иван",
-    "age": 30,
-    "city": "Санкт-Петербург",
-    "salary": 50000
-  },
-  {
-    "name": "Мария",
-    "city": "Казань",
-    "profession": "Дизайнер",
-    "hobby": "Рисование"
-  }
-]
+    {
+      "name": "Alice",
+      "age": 22,
+      "city": "SPB"
+    },
+    {
+      "name": "Bob",
+      "age": 25,
+      "city": "Moscow"
+    },
+    {
+      "name": "Carlos",
+      "age": 30,
+      "city": "Kazan"
+    },
+    {
+      "name": "Dana",
+      "age": 21,
+      "city": "SPB"
+    },
+    {
+      "name": "Andrey",
+      "age": 27,
+      "city": "Novosibirsk"
+    }
+  ]
