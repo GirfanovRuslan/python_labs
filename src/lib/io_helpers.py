@@ -2,8 +2,8 @@ from pathlib import Path
 import json
 import csv
 
-def read_json(file_path: str) -> list:
-    """Чтение JSON файла с проверками"""
+def validate_file_basics(file_path: str) -> Path:
+    """Общие проверки файла: существование и непустота"""
     path = Path(file_path)
     
     if not path.exists():
@@ -12,12 +12,19 @@ def read_json(file_path: str) -> list:
     if path.stat().st_size == 0:
         raise ValueError(f"Файл {file_path} пустой")
     
+    return path
+
+def read_json(file_path: str) -> list:
+    """Чтение JSON файла с проверками"""
+    path = validate_file_basics(file_path)  # ← ОБЩИЕ ПРОВЕРКИ
+    
     with path.open('r', encoding='utf-8') as f:
         try:
             data = json.load(f)
         except json.JSONDecodeError:
             raise ValueError(f"Файл {file_path} содержит невалидный JSON")
     
+    # Специфичные для JSON проверки
     if not isinstance(data, list):
         raise ValueError("JSON должен содержать список")
     
@@ -31,13 +38,7 @@ def read_json(file_path: str) -> list:
 
 def read_csv(file_path: str) -> tuple[list, list]:
     """Чтение CSV файла с проверками"""
-    path = Path(file_path)
-    
-    if not path.exists():
-        raise FileNotFoundError(f"Файл {file_path} не найден")
-    
-    if path.stat().st_size == 0:
-        raise ValueError(f"Файл {file_path} пустой")
+    path = validate_file_basics(file_path)  # ← ОБЩИЕ ПРОВЕРКИ
     
     with path.open('r', encoding='utf-8') as f:
         sample = f.read(1024)
