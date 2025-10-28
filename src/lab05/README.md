@@ -106,23 +106,23 @@ except ValueError as e:
 ### Входные данные:
 
 #### people.json:
-![alt text](<../images/lab05/lab05 1.png>)
+![alt text](</images/lab05/lab05 1.png>)
 #### cities.csv:
-![alt text](<../images/lab05/lab05 3.png>)
+![alt text](</images/lab05/lab05 3.png>)
 #### people.csv:
-![alt text](<../images/lab05/lab05 2.png>)
+![alt text](</images/lab05/lab05 2.png>)
 
 
 ### Выходные файлы:
 #### В алфавитном порядке
 #### people_from_json.csv:
-![alt text](<../images/lab05/lab05 4.png>)
+![alt text](</images/lab05/lab05 4.png>)
 
 #### cities_from_csv.xlsx:
-![alt text](<../images/lab05/lab05 5.png>)
+![alt text](</images/lab05/lab05 5.png>)
 
 #### people_from_csv.json:
-![alt text](<../images/lab05/lab05 6.png>)
+![alt text](</images/lab05/lab05 6.png>)
 
 
 ## Особенности реализации
