@@ -1,33 +1,8 @@
 <div align="center">
 
-# <span class="pulse-text">🎬 Вы смотрите мою пятую лабу!</span>
-
-<style>
-.pulse-text {
-  animation: pulse 3s infinite;
-  color: #ff00d4ff;
-  font-weight: bold;
-  text-shadow: 0 0 10px rgba(251, 255, 0, 0.5);
-}
-
-@keyframes pulse {
-  0% { 
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  50% { 
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  100% { 
-    opacity: 0;
-    transform: scale(0.8);
-  }
-}
-</style>
+# ✨ **Вы смотрите мою пятую лабу!** ✨
 
 </div>
-
 
 ## Коды программы
 - [JSON <-> CSV](/src/lab05/json_csv.py)
