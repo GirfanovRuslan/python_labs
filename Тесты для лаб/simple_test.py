@@ -20,25 +20,25 @@ def main():
     try:
         # Тест 1: JSON → CSV
         print("1. JSON → CSV...")
-        json_to_csv("src/data/lab05/samples/people.json", "src/data/lab05/out/people_from_json.csv")
+        json_to_csv("data/lab05/samples/people.json", "data/lab05/out/people_from_json.csv")
         print("   ✓ Успешно")
         
         # Тест 2: CSV → JSON  
         print("2. CSV → JSON...")
-        validate_file_extension("src/data/lab05/samples/people.csv", ['.csv'])
-        validate_file_extension("src/data/lab05/out/people_from_csv.json", ['.json'])
-        csv_to_json("src/data/lab05/samples/people.csv", "src/data/lab05/out/people_from_csv.json")
+        validate_file_extension("data/lab05/samples/people.csv", ['.csv'])
+        validate_file_extension("data/lab05/out/people_from_csv.json", ['.json'])
+        csv_to_json("data/lab05/samples/people.csv", "data/lab05/out/people_from_csv.json")
         print("   ✓ Успешно")
         
         # Тест 3: CSV → XLSX
         print("3. CSV → XLSX...")
-        validate_file_extension("src/data/lab05/samples/people.csv", ['.csv'])
-        validate_file_extension("src/data/lab05/out/people.xlsx", ['.xlsx'])
-        csv_to_xlsx("src/data/lab05/samples/people.csv", "src/data/lab05/out/people.xlsx")
+        validate_file_extension("data/lab05/samples/people.csv", ['.csv'])
+        validate_file_extension("data/lab05/out/people.xlsx", ['.xlsx'])
+        csv_to_xlsx("data/lab05/samples/people.csv", "data/lab05/out/people.xlsx")
         print("   ✓ Успешно")
         
         print("\n✅ ВСЕ ТЕСТЫ ПРОЙДЕНЫ!")
-        print("Проверь файлы в: src/data/lab05/out/")
+        print("Проверь файлы в: data/lab05/out/")
         
     except Exception as e:
         print(f"❌ Ошибка: {e}")
