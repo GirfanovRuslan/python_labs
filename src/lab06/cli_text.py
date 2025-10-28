@@ -1,186 +1,106 @@
 #!/usr/bin/env python3
-"""
-CLI-утилита для работы с текстом: анализ частот и вывод файлов
-Использует функции из lab03 (lib/text.py)
-"""
+"""CLI-утилита для работы с текстом"""
 
 import argparse
 import sys
 from pathlib import Path
 
-def setup_argparse():
-    """Настройка парсера аргументов для текстовых утилит"""
-    parser = argparse.ArgumentParser(
-        description="CLI-утилита для работы с текстом (использует функции из ЛР3)",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Примеры использования:
-  python cli_text.py cat --input data.txt -n
-  python cli_text.py stats --input text.txt --top 10
-        """
-    )
-    
-    subparsers = parser.add_subparsers(
-        dest="command", 
-        help="Доступные команды",
-        required=True,
-        metavar="COMMAND"
-    )
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-    # Подкоманда cat
-    cat_parser = subparsers.add_parser("cat", help="Вывести содержимое файла")
-    cat_parser.add_argument(
-        "--input", 
-        required=True,
-        type=validate_file_path,
-        help="Путь к входному файлу"
-    )
-    cat_parser.add_argument(
-        "-n", 
-        action="store_true", 
-        help="Нумеровать строки"
-    )
-
-    # Подкоманда stats
-    stats_parser = subparsers.add_parser("stats", help="Анализ частот слов в тексте")
-    stats_parser.add_argument(
-        "--input", 
-        required=True,
-        type=validate_file_path,
-        help="Путь к текстовому файлу"
-    )
-    stats_parser.add_argument(
-        "--top", 
-        type=validate_positive_int,
-        default=5,
-        help="Количество топ-слов (по умолчанию: 5)"
-    )
-
-    return parser
-
-def validate_file_path(file_path: str) -> Path:
-    """Валидация пути к файлу"""
-    if not file_path or not isinstance(file_path, str):
-        raise argparse.ArgumentTypeError("Путь к файлу должен быть непустой строкой")
-    
-    path = Path(file_path)
-    
-    if not path.exists():
-        raise argparse.ArgumentTypeError(f"Файл {file_path} не найден")
-    
-    if not path.is_file():
-        raise argparse.ArgumentTypeError(f"{file_path} не является файлом")
-    
+def get_text_functions():
+    """Получает функции из ЛР3"""
     try:
-        if path.stat().st_size == 0:
-            raise argparse.ArgumentTypeError(f"Файл {file_path} пустой")
-    except PermissionError:
-        raise argparse.ArgumentTypeError(f"Нет доступа к файлу {file_path}")
-    except OSError as e:
-        raise argparse.ArgumentTypeError(f"Ошибка доступа к файлу {file_path}: {e}")
-    
+        from lib.text import normalize, tokenize, count_freq, top_n
+        return normalize, tokenize, count_freq, top_n
+    except ImportError:
+        import re
+        def normalize(text, *, casefold=True, yo2e=True):
+            text = text.casefold() if casefold else text.lower()
+            return text.replace('ё', 'е') if yo2e else text
+        return normalize, lambda t: re.findall(r'\w+(?:-\w+)*', t), \
+               lambda t: {w: t.count(w) for w in set(t)}, \
+               lambda f, n: sorted(f.items(), key=lambda x: (-x[1], x[0]))[:n]
+
+def validate_file_path(file_path):
+    """Проверка файла с понятными ошибками"""
+    path = Path(file_path)
+    if not path.exists():
+        raise FileNotFoundError(f"Файл {file_path} не найден")
+    if not path.is_file():
+        raise ValueError(f"{file_path} не является файлом")
+    if path.stat().st_size == 0:
+        raise ValueError(f"Файл {file_path} пустой")
     return path
 
-def validate_positive_int(value: str) -> int:
-    """Валидация положительного целого числа"""
-    try:
-        ivalue = int(value)
-    except ValueError:
-        raise argparse.ArgumentTypeError(f"Должно быть целым числом, получено: {value}")
-    
+def read_file(file_path):
+    """Чтение файла с полной валидацией"""
+    path = validate_file_path(file_path)
+    return path.read_text(encoding='utf-8')
+
+def validate_positive_int(value):
+    """Валидация положительного числа"""
+    ivalue = int(value)
     if ivalue <= 0:
-        raise argparse.ArgumentTypeError(f"Должно быть положительным числом, получено: {value}")
-    
+        raise argparse.ArgumentTypeError(f"{value} должно быть положительным числом")
     return ivalue
 
-def read_file_safe(file_path: Path, encoding: str = 'utf-8') -> str:
-    """Безопасное чтение файла с проверками"""
-    try:
-        return file_path.read_text(encoding=encoding)
-    except UnicodeDecodeError:
-        # Пробуем другие распространенные кодировки
-        for enc in ['cp1251', 'iso-8859-1', 'utf-16']:
-            try:
-                return file_path.read_text(encoding=enc)
-            except UnicodeDecodeError:
-                continue
-        raise ValueError(f"Не удалось прочитать файл {file_path}. Неподдерживаемая кодировка.")
-
 def cat_command(args):
-    """Реализация команды cat"""
+    """Вывод содержимого файла"""
     try:
-        content = read_file_safe(args.input)
-        lines = content.splitlines()
-        
-        print(f"=== Содержимое файла: {args.input} ===")
+        lines = read_file(args.input).splitlines()
         for i, line in enumerate(lines, 1):
-            if args.n:
-                print(f"{i:6d}\t{line}")
-            else:
-                print(line)
-        print(f"=== Конец файла (строк: {len(lines)}) ===")
-                
+            print(f"{i:6d}\t{line}" if args.n else line)
+    except (FileNotFoundError, ValueError) as e:
+        print(f"Ошибка файла: {e}", file=sys.stderr)
+        sys.exit(1)
     except Exception as e:
-        print(f"❌ Ошибка при чтении файла: {e}", file=sys.stderr)
+        print(f"Неожиданная ошибка: {e}", file=sys.stderr)
         sys.exit(1)
 
 def stats_command(args):
-    """Реализация команды stats с использованием функций из ЛР3"""
+    """Анализ частот слов"""
     try:
-        # Проверяем доступность модулей ЛР3
-        try:
-            from lib.text import normalize, tokenize, count_freq, top_n
-        except ImportError as e:
-            raise ImportError(f"Не удалось импортировать функции из ЛР3: {e}")
-        
-        content = read_file_safe(args.input)
-        
-        # Используем функции из ЛР3
-        normalized_text = normalize(content)
-        tokens = tokenize(normalized_text)
-        
+        tokens = tokenize(normalize(read_file(args.input)))
         if not tokens:
-            print("ℹ️  Файл не содержит слов для анализа")
+            print("Файл не содержит слов для анализа")
             return
         
-        frequencies = count_freq(tokens)
-        top_words = top_n(frequencies, args.top)
-        
-        # Вывод результатов
-        print(f"=== Анализ файла: {args.input} ===")
-        print(f"Всего слов: {len(tokens)}")
-        print(f"Уникальных слов: {len(frequencies)}")
-        print(f"Топ-{args.top} слов:")
-        
-        for i, (word, count) in enumerate(top_words, 1):
-            print(f"  {i:2d}. {word:<15} : {count:>3}")
-            
+        freq = count_freq(tokens)
+        print(f"Всего слов: {len(tokens)}\nУникальных: {len(freq)}\nТоп-{args.top}:")
+        for word, count in top_n(freq, args.top):
+            print(f"  {word}: {count}")
+    except (FileNotFoundError, ValueError) as e:
+        print(f"Ошибка файла: {e}", file=sys.stderr)
+        sys.exit(1)
     except Exception as e:
-        print(f"❌ Ошибка при анализе текста: {e}", file=sys.stderr)
+        print(f"Ошибка анализа: {e}", file=sys.stderr)
         sys.exit(1)
 
-def main():
-    """Основная функция CLI"""
-    parser = setup_argparse()
+# Получаем функции один раз
+normalize, tokenize, count_freq, top_n = get_text_functions()
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="CLI-утилита для работы с текстом",
+        formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    
+    subparsers = parser.add_subparsers(dest="command", required=True)
+    
+    cat_parser = subparsers.add_parser("cat", help="Вывести содержимое файла")
+    cat_parser.add_argument("--input", required=True, help="Путь к входному файлу")
+    cat_parser.add_argument("-n", action="store_true", help="Нумеровать строки")
+    cat_parser.set_defaults(func=cat_command)
+    
+    stats_parser = subparsers.add_parser("stats", help="Анализ частот слов")
+    stats_parser.add_argument("--input", required=True, help="Путь к текстовому файлу")
+    stats_parser.add_argument("--top", type=validate_positive_int, default=5, 
+                            help="Количество топ-слов (положительное число)")
+    stats_parser.set_defaults(func=stats_command)
     
     try:
         args = parser.parse_args()
+        args.func(args)
     except argparse.ArgumentError as e:
-        print(f"❌ Ошибка в аргументах: {e}", file=sys.stderr)
+        print(f"Ошибка аргументов: {e}", file=sys.stderr)
         sys.exit(1)
-    except SystemExit:
-        # argparse сам выходит при --help, не нужно обрабатывать
-        return
-
-    # Выполняем команду
-    if args.command == "cat":
-        cat_command(args)
-    elif args.command == "stats":
-        stats_command(args)
-    else:
-        print(f"❌ Неизвестная команда: {args.command}", file=sys.stderr)
-        parser.print_help()
-        sys.exit(1)
-
-if __name__ == "__main__":
-    main()
