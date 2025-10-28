@@ -1,4 +1,19 @@
-# python_labs
+# 🐍 Python Labs
+
+<div align="center">
+
+<!-- Анимированный заголовок -->
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=28&duration=3000&pause=1000&color=00FF88&center=true&vCenter=true&width=600&lines=🚀+Лабораторные+работы+от+Руслана;💻+Python+Developer;🎯+С+любовью+к+коду" alt="Типизированный заголовок" />
+
+<!-- Бейджи -->
+<p>
+  <img src="https://img.shields.io/badge/Студент-Разработчик-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Python-3.12-green?style=for-the-badge&logo=python" />
+</p>
+
+</div>
+
+
 
 ## 1 задание
 ```python
