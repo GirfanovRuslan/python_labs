@@ -1,4 +1,34 @@
-# Лабароторная работа 3
+<div align="center">
+
+# <span class="pulse-text">🎬 Вы смотрите мою третью лабу!</span>
+
+<style>
+.pulse-text {
+  animation: pulse 3s infinite;
+  color: #ff00d4ff;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(110, 74, 105, 1);
+}
+
+@keyframes pulse {
+  0% { 
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% { 
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+</style>
+
+</div>
+
+
 ### Задание А
 ```py
 def normalize(text: str, *, casefold: bool = True, yo2e: bool = True) -> str:
@@ -64,7 +94,7 @@ print(top_n(freq1, 2))
 freq2 = {"bb": 2, "aa": 2, "cc": 1}
 print(top_n(freq2, 2))
 ```
-![alt text](../images/lab03/lab03exA.png)
+![alt text](../../images/lab03/lab03exA.png)
 
 ## Задание B
 ```py
@@ -112,4 +142,4 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-![alt text](../images/lab03/lab03exB.png)
+![alt text](../../images/lab03/lab03exB.png)
