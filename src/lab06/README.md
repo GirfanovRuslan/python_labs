@@ -101,7 +101,7 @@ py src/lab06/cli_text.py cat --in data/lab06/out/text.txt -n
 ![alt text](../../images/lab06/texthelp.png)
 # 🚨 Демонстрация обработки ошибок
 ### Ошибка: Файл не найден
-![alt text](image.png)
+![alt text](../../images/lab06/mistake.png)
 ### Неверный аргумент --top
 ![alt text](../../images/lab06/mistake2.png)
 ### Отсутствуют обязательные аргументы
