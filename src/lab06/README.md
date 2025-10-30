@@ -20,6 +20,22 @@
 - **`src/lab05/json_csv.py`** - функции конвертации JSON/CSV
 - **`src/lab05/csv_xlsx.py`** - функции конвертации CSV/XLSX
 - **`src/lib/text.py`** - функции анализа текста из ЛР3
+### Установка зависимостей 
+
+#### Напрямую
+```bash
+pip install openpyxl
+```
+
+#### Через `requirements.txt`
+```bash
+pip install -r requirements.txt
+```
+- Эта команда просканирует файл `requirements.txt` и установит все перечисленные в нем пакеты (нужной версии)
+    ```txt
+    openpyxl==3.1.5 
+    ```
+
 
 ### 🔄 Модуль `cli_convert.py` - конвертация данных
 ### Команда: `json2csv`
@@ -46,7 +62,8 @@ py src/lab06/cli_convert.py csv2json --in data/lab05/samples/people.csv --out da
 ![alt text](<../../images/lab06/lab06 csvjson1.png>)
 ## Стало:
 ![alt text](<../../images/lab06/lab06 csvjson3.png>)
-
+## Для cli_convert.py --help
+![alt text](<../../images/lab06/cliconvert help.png>)
 ## Команда: csv2xlsx
 ### Назначение: Конвертирует CSV файл в XLSX формат (Excel)
 ```bash
@@ -80,8 +97,8 @@ py src/lab06/cli_text.py cat --in data/lab06/out/text.txt -n
 ![alt text](<../../images/lab06/lab06 stats2.png>)
 ## Запуск кода
 ![alt text](<../../images/lab06/lab06 cat1.png>)
-
-
+## Для cli_text.py --help
+![alt text](../../images/lab06/texthelp.png)
 # 🚨 Демонстрация обработки ошибок
 ### Ошибка: Файл не найден
 ![alt text](image.png)
