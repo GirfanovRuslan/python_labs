@@ -25,7 +25,7 @@ pip install pytest pytest-cov black
 ## 🧪 Запуск тестов
 ### 🔍 Тесты для `text.py`
 ```bash
--m pytest tests/test_text.py -v
+py -m pytest tests/test_text.py -v
 ```
 
 ### Тестируемые функции:
