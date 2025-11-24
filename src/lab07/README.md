@@ -63,8 +63,8 @@ py -m black --check .
 ```
 ### ✅ Демонстрация работы тестов
 #### Все тесты проходят успешно
-
-
+![alt text](<../../images/lab07/lab07 test.png>)
 #### Проверка покрытия кода
-
+![alt text](<../../images/lab07/lab07 покрытие кода.png>)
 #### Проверка стиля black
+![alt text](<../../images/lab07/lab07 1.png>)
